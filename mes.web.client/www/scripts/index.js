@@ -100,7 +100,7 @@
         if (url.toLowerCase().indexOf("http") == -1) return;
         //Android _self
         //IOS _blank
-        cordova.InAppBrowser.open(url, "_blank", "location=no,zoom=no,fullscreen=yes,clearCache=yes,hardwareback=no");
+        cordova.InAppBrowser.open(url, "_self", "location=no,zoom=no,fullscreen=yes,clearCache=yes,hardwareback=no");
 
     }
 
