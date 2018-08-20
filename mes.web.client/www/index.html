@@ -1,29 +1,83 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
-    <head>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <!--
         必要时在以下 META 标记中自定义内容安全策略。将 "unsafe-inline" 添加到 default-src 以启动内联 JavaScript。
       有关详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkID=617521
     -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
-        
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <link rel="stylesheet" type="text/css" href="css/index.css">
-        <title>mes.web.client</title>
-    </head>
-    <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">正在连接到设备</p>
-                <p class="event received">设备已就绪</p>
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <title>MES.Client.View</title>
+</head>
+<body>
+    <div class="container">
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="leaderboard">
+                    <h1>Apache Cordova</h1>
+                    <div id="deviceready" class="blink" style="text-align: center">
+                        <p class="event listening">正在连接到设备</p>
+                        <p class="event received">设备已就绪</p>
+                    </div>
+                </div>
+                <div class="span1">
+                    <div id="Server">
+                        <p>请选择地址：</p>
+                        <select name="selectURL" id="selectURL" class="form-control input-sm">
+                            <option value="">手动输入</option>
+                            <option value="http://192.168.1.174/v/#/lineMadeChart">目标节拍时间达成情况</option>
+                            <option value="http://192.168.1.174/v/#/materialLocation">物料监控</option>
+                            <option value="http://192.168.1.174/v/#/aimsCycleProportion">目标累计节拍时间达成情况</option>
+                            <option value="http://192.168.1.174/v/#/machineMonitor">设备监控</option>
+                            <option value="http://192.168.1.174/v/#/machineMaintain">设备维修看板</option>
+                            <option value="http://192.168.1.174/v/#/defectSummary">不良现象分类汇总统计</option>
+                            <option value="http://192.168.1.174/v/#/needMaterialKanBan">现场物料需求看板</option>
+                            <option value="http://192.168.1.174/v/#/planProportion">计划完成进度</option>
+                            <option value="http://192.168.1.174/v/#/machineMonitor4FOven">设备监控看板 4F烘箱</option>
+                            <option value="http://192.168.1.174/v/#/machineMonitor3FPotting">设备监控看板 3F灌封室</option>
+                            <option value="http://192.168.1.174/v/#/machineMonitor3FDrying">设备监控看板 3F烘干室</option>
+                            <option value="http://192.168.1.174/v/#/machineMonitor2FAgeing">设备监控看板 2F老化室</option>
+                            <option value="http://192.168.1.174/v/#/needMaterialZanCun?IsPlan=true&IsLineWarehouse=false&IsFirst=false">大材料仓</option>
+                            <option value="http://192.168.1.174/v/#/needMaterialLine?IsPlan=true&IsLineWarehouse=true&IsFirst=false">PCBA库区</option>
+                            <option value="http://192.168.1.174/v/#/needMaterialPosition?IsPlan=false&IsLineWarehouse=false&IsFirst=false">4F暂存区到工位</option>
+                            <option value="http://192.168.1.174/v/#/needMaterialLine?IsPlan=false&IsLineWarehouse=true&IsFirst=false">3F暂存到线边</option>
+                            <option value="http://192.168.1.174/v/#/needMaterialLine?IsPlan=false&IsLineWarehouse=true&IsFirst=true">1F暂存到线边</option>
+                            <option value="http://192.168.1.174/v/#/lineMadeChart?LineCode=080101">4楼产线目视化</option>
+                            <option value="http://192.168.1.174/v/#/machineMonitor4FPotting">4楼灌封室</option>
+                            <option value="http://192.168.1.174/v/#/schedulePerson4FLeft">4楼人员登录左</option>
+                            <option value="http://192.168.1.174/v/#/schedulePerson4FRight">4楼人员登录右</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="span2">
+                    <div>
+                        <p>手动输入地址:</p>
+                        <input id="manual_url" type="text" value="http://" class="form-control" />
+                    </div>
+                </div>
+                <div class="span3">
+                    <div class="input-group center-block">
+                        <button id="bt_ok" type="button" class="form-control  btn btn-info">GO-></button>
+                    </div>
+                </div>
+                <div class="span4">
+                    <p id="log" class="text-info">Log:</p>
+                </div>
             </div>
         </div>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="scripts/platformOverrides.js"></script>
-        <script type="text/javascript" src="scripts/index.js"></script>
-    </body>
+
+    </div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="scripts/platformOverrides.js"></script>
+    <script type="text/javascript" src="scripts/angular.min.js"></script>
+    <script type="text/javascript" src="scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+</body>
 </html>
