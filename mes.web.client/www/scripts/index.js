@@ -12,6 +12,8 @@
     document.addEventListener('deviceready', onDeviceReady.bind(this), false);
 
     var log = document.getElementById('log');
+    var batterystatuslevel = document.getElementById('batterystatuslevel');
+    var isPlugged = document.getElementById('isPlugged');
 
     function onDeviceReady() {
 
@@ -33,6 +35,7 @@
         var urlElement = document.getElementById('manual_url');
         var btnElement = document.getElementById('bt_ok');
 
+        window.addEventListener("batterystatus", onBatteryStatus, false);
 
         btnElement.addEventListener('click', function () {
             var showName = selectURL.options[selectURL.selectedIndex].firstChild.nodeValue;
@@ -59,6 +62,11 @@
     function onResume() {
         // TODO: 此应用程序已重新激活。在此处还原应用程序状态。
     };
+
+    function onBatteryStatus(status) {
+        batterystatuslevel.innerHTML = status.level;
+        isPlugged.innerHTML = status.isPlugged?'在充电':'未充电';
+    }
 
     function Logger(log, msg) {
         log.get(0).innerHTML += "->" + msg;

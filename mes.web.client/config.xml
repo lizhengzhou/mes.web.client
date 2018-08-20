@@ -110,4 +110,5 @@
   <plugin name="cordova-plugin-file" spec="~4.3.3" />
   <plugin name="cordova-plugin-crosswalk-webview" spec="~2.1.0" />
   <plugin name="cordova-plugin-inappbrowser" spec="~3.0.0" />
+  <plugin name="cordova-plugin-battery-status" spec="~2.0.2" />
 </widget>
